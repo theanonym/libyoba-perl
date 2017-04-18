@@ -17,13 +17,13 @@ HashIterator::HashIterator(const Hash & hash, bool is_null)
 
 HashIterator::HashIterator(const HashIterator & to_copy)
    : _hash(to_copy._hash),
-     _hash_entry(to_copy.getHE())
+     _hash_entry(to_copy._getHE())
 {
 }
 
 HashIterator::HashIterator(HashIterator && to_move)
    : _hash(to_move._hash),
-     _hash_entry(to_move.getHE())
+     _hash_entry(to_move._getHE())
 {
    to_move._hash_entry = nullptr;
 }
@@ -32,7 +32,7 @@ HashIterator::HashIterator(HashIterator && to_move)
 
 HashEntry HashIterator::operator* () const
 {
-   return HashEntry(_hash, getHE());
+   return HashEntry(_hash, _getHE());
 }
 
 HashIterator & HashIterator::operator++ ()
@@ -68,7 +68,7 @@ bool HashIterator::operator!= (const HashIterator & other) const
 
 
 
-HE * HashIterator::getHE() const
+HE * HashIterator::_getHE() const
 {
    YOBAPERL_ASSERT(_hash_entry);
    return _hash_entry;

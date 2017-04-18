@@ -90,7 +90,6 @@ Hash Perl::newNamedHash(const std::string & name)
    return Hash(*this, _getOrCreateNamedHV(name), /* ref++ */true);
 }
 
-//TODO complete
 Scalar Perl::newObject(const std::string & class_name)
 {
    return callMethod<Scalar>(class_name + "::new", newScalar(class_name));
@@ -185,9 +184,9 @@ Perl & Perl::init()
    return *this;
 }
 
-Perl & Perl::lib(const char * path)
+Perl & Perl::lib(const std::string & path)
 {
-   getArray("INC").push(newScalar(path));
+   getArray("INC").unshift(newScalar(path));
    return *this;
 }
 
@@ -209,6 +208,7 @@ Perl & Perl::use(const std::string & name)
    return *this;
 }
 
+//TODO Untested
 Perl & Perl::no(const std::string & name)
 {
    load_module(PERL_LOADMOD_DENY, newSVpv(name.c_str(),name.length()), NULL, NULL);

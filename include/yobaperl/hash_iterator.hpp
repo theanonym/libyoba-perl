@@ -7,16 +7,40 @@
 namespace yoba {
 
 
-
+////////////////////////////////////////////////////////////
+/// \brief Hash iterator
+///
+/// \relates Hash
+///
+/// \cpp
+/// for(Hash::Iterator it = hash.begin(); it != hash.end(); ++it) {
+///     std::cout << *x << std::endl;
+///     std::cout << (*x).getKey() << " => " << (*x).getValue() << std::endl;
+/// }
+///
+/// for(HashEntry x : hash)
+///    std::cout << x << std::endl;
+/// \endcpp
+///
+////////////////////////////////////////////////////////////
 class YOBAPERL_EXPORT HashIterator
 {
    friend class Hash;
 
 public:
-   // Constructors
+
+
+
+   ////////////////////////////////////////////////////////////
+   /// \brief Move constructor
+   ///
+   ////////////////////////////////////////////////////////////
    HashIterator(HashIterator && to_move);
 
-   // Operators
+
+
+   /// @{ \name Operators
+
    HashEntry operator* () const;
    HashIterator & operator++ ();
    HashIterator operator++ (int);
@@ -25,8 +49,12 @@ public:
    bool operator!= (const HashIterator & other) const;
    operator bool() const;
 
-   // Internals
-   HE * getHE() const;
+   /// @}
+
+
+
+protected:
+   HE * _getHE() const;
 
 private:
    HashIterator(const Hash & hash, bool is_null = false);

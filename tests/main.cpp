@@ -398,8 +398,6 @@ int test()
 int main()
 {
 #ifdef YOBAPERL_MULTIPLICITY
-   std::cerr << "Run two threads" << std::endl;
-
    std::thread t1(&test);
    std::thread t2(&test);
 

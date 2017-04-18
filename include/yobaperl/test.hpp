@@ -8,20 +8,48 @@ namespace yoba {
 
 
 
+////////////////////////////////////////////////////////////
+/// \brief Test::Simple interface
+///
+////////////////////////////////////////////////////////////
 class Test
 {
 public:
-   Test(Perl & perl, int tests_count = 0);
+
+
+
+   ////////////////////////////////////////////////////////////
+   /// \brief Constructor
+   ///
+   ////////////////////////////////////////////////////////////
+   Test(Perl & perl, int planned_tests = 0);
+
+   ////////////////////////////////////////////////////////////
+   /// \brief Destructor
+   ///
+   ////////////////////////////////////////////////////////////
    ~Test();
 
+
+
+   /// @{ \name Testing
+
    bool ok(bool cond, std::string test_name = "");
+
    template<class A, class B>
    bool is(const A & a, const B & b, std::string test_name = "");
+
    template<class A, class B>
    bool isnt(const A & a, const B & b, std::string test_name = "");
+
    Test & pass(std::string test_name = "");
+
    Test & fail(std::string test_name = "");
+
    IV doneTesting();
+
+   /// @}
+
 
 private:
    Perl & _perl;

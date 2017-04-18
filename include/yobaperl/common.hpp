@@ -26,7 +26,6 @@
    #include <cassert>
 #endif
 
-#define P(x)  std::cout << x << std::endl
 #define YOBAPERL_UNUSED(x) PERL_UNUSED_ARG(x)
 #define YOBAPERL_ASSERT(x) assert(x)
 

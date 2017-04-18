@@ -4,13 +4,13 @@ namespace yoba {
 
 
 
-Test::Test(Perl & perl, int tests_count)
+Test::Test(Perl & perl, int planned_tests)
    : _perl(perl)
 {
    _perl.use("Test::More");
 
-   if(tests_count)
-      _perl.eval(" plan(tests => " + std::to_string(tests_count) + ") ");
+   if(planned_tests)
+      _perl.eval(" plan(tests => " + std::to_string(planned_tests) + ") ");
 }
 
 Test::~Test()

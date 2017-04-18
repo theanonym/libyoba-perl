@@ -1,5 +1,5 @@
-#ifndef YOBAPERL_PERLS_TACK_HPP
-#define YOBAPERL_PERLS_TACK_HPP
+#ifndef YOBAPERL_PERL_STACK_HPP
+#define YOBAPERL_PERL_STACK_HPP
 
 #include "yobaperl/common.hpp"
 
@@ -48,4 +48,4 @@ private:
 
 }} // namespace yoba::priv
 
-#endif // YOBAPERL_PERLS_TACK_HPP
+#endif // YOBAPERL_PERL_STACK_HPP
