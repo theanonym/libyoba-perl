@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/theanonym/libyoba-perl.svg?branch=master)](https://travis-ci.org/theanonym/libyoba-perl)
+
 ## Examples
 ```c++
 // Interpreter instance
