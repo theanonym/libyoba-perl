@@ -1,6 +1,11 @@
 #include <yobaperl/perl.hpp>
 #include <yobaperl/test.hpp>
 
+#ifdef YOBAPERL_MULTIPLICITY
+   #include <thread>
+   #include <future>
+#endif
+
 using namespace yoba;
 
 
@@ -8,10 +13,9 @@ using namespace yoba;
 int test()
 {
    Perl perl;
-
-
-
    Test test(perl);
+
+
    // Eval
    {
       perl.eval(" $test = 'pass' ");
@@ -366,8 +370,9 @@ int test()
 
    // Objects
    {
-      perl.lib("../../tests");
+      perl.lib("./tests");
       perl.lib("../tests");
+      perl.lib("../../tests");
       perl.require("'class.pl'");
 
       Scalar o = perl.newObject("Yoba");
@@ -394,16 +399,12 @@ int test()
    return test.doneTesting();
 }
 
-#include <thread>
 int main()
 {
 #ifdef YOBAPERL_MULTIPLICITY
-   std::thread t1(&test);
-   std::thread t2(&test);
-
-   t1.join();
-   t2.join();
+   auto future = std::async(std::launch::async, test);
+   return test() == 0 && future.get() == 0;
 #else
-   test();
+   return test();
 #endif
 }
