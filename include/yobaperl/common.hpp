@@ -39,8 +39,6 @@
 
 
 // Perl headers
-#pragma GCC diagnostic ignored "-Wliteral-suffix"
-
 namespace yoba { extern "C" {
 
 #include <EXTERN.h>

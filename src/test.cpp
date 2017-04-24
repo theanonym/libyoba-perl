@@ -43,10 +43,10 @@ Test & Test::fail(std::string test_name)
    return *this;
 }
 
-IV Test::doneTesting()
+bool Test::doneTesting()
 {
    _done_testing = true;
-   return _perl.eval<Scalar>(" done_testing() ").toIV();
+   return _perl.eval<Scalar>(" done_testing(); Test::Builder->new->is_passing() ").toBool();
 }
 
 

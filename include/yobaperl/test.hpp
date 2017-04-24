@@ -46,7 +46,7 @@ public:
 
    Test & fail(std::string test_name = "");
 
-   IV doneTesting();
+   bool doneTesting();
 
    /// @}
 

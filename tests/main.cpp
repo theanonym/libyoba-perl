@@ -10,7 +10,7 @@ using namespace yoba;
 
 
 
-int test()
+bool test()
 {
    Perl perl;
    Test test(perl);
@@ -403,8 +403,8 @@ int main()
 {
 #ifdef YOBAPERL_MULTIPLICITY
    auto future = std::async(std::launch::async, test);
-   return test() == 0 && future.get() == 0;
+   return (test() && future.get()) ? 0 : 1;
 #else
-   return test();
+   return test() ? 0 : 1;
 #endif
 }
